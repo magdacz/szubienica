@@ -20,11 +20,11 @@ while(othersLetters > 0 && counterShots > 0) {
         break;
         
     } else if (playerShot.length !== 1) {
-        alert("Możesz podać tylko jedną literę!")
+        alert("Musisz podać jedną literę!")
     } else {
         counterShots--;
         for (var j = 0; j < word.length; j++) {
-            if(word[j] === playerShot) {
+            if(word[j] === playerShot && answers[j] === "_") {
                 answers[j] = playerShot;
                 othersLetters--;
             }
@@ -33,8 +33,9 @@ while(othersLetters > 0 && counterShots > 0) {
 }
 
 alert(answers.join(" "));
-if(counterShots > 0) {
-  alert("Gratulacje! Szukane słowo to " + word);
-} else {
+if(counterShots > 0 && playerShot !== null) { 
+  // playerShot !== null zapobiega wyświetlaniu gratulacji w przypadku gdy nie podamy litery a klikniemy ok i anulujemy przy następnym wyskakującym okienku
+  alert("Gratulacje! Szukane słowo to " + word); 
+}  else {
   alert("Niestety nie odgadłeś słowa.")
 }
